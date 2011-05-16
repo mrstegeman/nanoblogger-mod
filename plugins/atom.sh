@@ -108,7 +108,7 @@ if [ ! -z "$FEEDMOD_VAR" ] || case "$NB_QUERY" in \
 			<uri>$BLOG_FEED_URL</uri>
 		</author>
 		<id>$NB_AtomID</id>
-		<generator uri="http://nanoblogger.sourceforge.net" version="$VERSION">
+		<generator uri="https://github.com/mrstegeman/nanoblogger-mod" version="$VERSION">
 			NanoBlogger
 		</generator>
 

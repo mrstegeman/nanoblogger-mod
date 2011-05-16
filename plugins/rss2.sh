@@ -104,7 +104,7 @@ if [ ! -z "$FEEDMOD_VAR" ] || case "$NB_QUERY" in \
 			<dc:language>$BLOG_FEED_LANG</dc:language>
 			<dc:creator>$NB_RSS2Author</dc:creator>
 			<dc:date>$NB_RSS2ModDate</dc:date>
-			<admin:generatorAgent rdf:resource="http://nanoblogger.sourceforge.net" />
+			<admin:generatorAgent rdf:resource="https://github.com/mrstegeman/nanoblogger-mod" />
 			$NB_RSS2Logo
 			$NB_RSS2Entries
 		</channel>
