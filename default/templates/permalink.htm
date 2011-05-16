@@ -58,8 +58,9 @@ $NB_RSSAltLink
                             '<div class="comments-post">' +
                             '<div class="comments-head">' +
                             '<span class="comments-title">' + unescape(data.comments[com].title.replace(/\+/g, " ")) + '</span>' +
-                            '<span class="comments-author">By: ' + unescape(data.comments[com].author.replace(/\+/g, " ")) + '</span></div>' +
-                            '<div class="comments-body">' + unescape(data.comments[com].data.replace(/\+/g, " ").replace(/\%0D\%0A/g, "<br />")) + '</div>' +
+                            '<span class="comments-author">By: ' + unescape(data.comments[com].author.replace(/\+/g, " ")) +
+                            ' on ' + unescape(data.comments[com].date.replace(/\+/g, " ")) + '</span></div>' +
+                            '<div class="comments-body">' + unescape(data.comments[com].body.replace(/\+/g, " ").replace(/\%0D\%0A/g, "<br />")) + '</div>' +
                             '</div>';
                     }
                 }
