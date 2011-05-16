@@ -1,0 +1,16 @@
+<div class="item">
+	<h2 class="date">$NB_EntryDate</h2>
+	<div class="blogbody">
+		<h3 class="title">$NB_EntryTitle</h3>
+		<div class="item-description">
+			$NB_EntryBody
+		</div>
+	</div>
+
+    <div class="posted" id="$NB_EntryID">
+		<br />$template_postedby <span class="item-creator">$NB_EntryAuthor</span>
+$([ "$SHOW_PERMALINKS" = "1" ] && echo '| <a class="link" href="'${ARCHIVES_PATH}$NB_EntryPermalink'">'$template_permlink'</a>')
+$([ ! -z "$NB_EntryCategories" ] && echo "| $template_catlinks $NB_EntryCategories")
+        | Comments: <a id="comments_$NB_EntryID" href="${BASE_URL}$BLOG_URL_ACTION$ARCHIVES_DIR/$permalink_file#comment_list"></a>
+	</div>
+</div>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="$BLOG_MIMETYPE; charset=$BLOG_CHARSET" />
+<meta name="generator" content="NanoBlogger $VERSION" />
+<meta name="robots" content="all" />
+<meta name="revisit-after" content="31 days" />
+
+<title>$NB_ArchiveTitle $template_archives | $BLOG_TITLE</title>
+
+<link rel="stylesheet" href="${BASE_URL}$BLOG_CSS" type="text/css" media="all" />
+<link rel="stylesheet" href="${BASE_URL}styles/print.css" type="text/css" media="print" />
+<link rel="shortcut icon" href="${BASE_URL}$BLOG_ICON" />
+$NB_AtomAltLink
+$NB_RSS2AltLink
+$NB_RSSAltLink
+<script type="text/javascript">
+    var ajax_req;
+    var elements;
+    function get_comment_count() {
+        var id_str = "";
+        elements = document.getElementsByClassName('posted');
+        for (var i = 0; i < elements.length; i++) {
+            id_str += elements[i].id + ',';
+            ajax_req = new XMLHttpRequest();
+            ajax_req.onreadystatechange = function() {
+                if (ajax_req.readyState == 4 && ajax_req.status == 200) {
+                    var data = eval('(' + ajax_req.responseText + ')');
+                    var com;
+                    for (com in data) {
+                        document.getElementById('comments_' + com).innerHTML = data[com];
+                    }
+                }
+            };
+        }
+        if (id_str != '') {
+            ajax_req.open("GET", "${BASE_URL}cgi-bin/comment.cgi?id=" + id_str + "&action=count", true);
+            ajax_req.send();
+        }
+    }
+</script>
+</head>
+
+
+<body onload="get_comment_count();">
+
+<div id="banner">
+	<h1><a href="${BASE_URL}$NB_INDEX" accesskey="1">$BLOG_TITLE</a></h1>
+	<span class="description">$BLOG_DESCRIPTION</span>
+</div><!-- /banner div -->
+
+<div id="container">
+	<div id="links">
+
+		<div class="calendar">
+		$NB_MonthlyCalendar
+		</div>
+
+	</div>
+	<div id="content">
+
+		<div class="blog">
+			<a id="top"></a>
+			<h2>$NB_ArchiveTitle $template_archives</h2>
+			<div id="menu">
+				<a href="${BASE_URL}$NB_INDEX">$template_main</a> &#62;
+				<a href="${BASE_URL}$ARCHIVES_DIR/$NB_INDEX">$template_archives</a> &#62;
+				<a href="${BASE_URL}$ARCHIVES_DIR/$year/$NB_INDEX">$yearn</a> &#62;
+				<br />
+	$([ ! -z "$prev_month" ] && echo '<a href="'${ARCHIVES_PATH}$NB_PrevArchiveMonthLink'">'$NB_PrevPage'</a>')
+				$monthn
+	$([ ! -z "$next_month" ] && echo '<a href="'${ARCHIVES_PATH}$NB_NextArchiveMonthLink'">'$NB_NextPage'</a>')
+			</div>
+			$NB_MetaBody
+			<div class="menu">
+				$NB_PageLinks
+				<a href="#top">$NB_TopPage</a>
+			</div>
+		</div>
+
+	</div><!-- /content div -->
+</div><!-- /container div -->
+
+</body>
+</html>
+

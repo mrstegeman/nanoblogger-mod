@@ -1,0 +1,46 @@
+<h2 class="date">
+	$NB_EntryDate
+</h2>
+<div class="blogbody">
+	<h3 class="title">$NB_EntryTitle</h3>
+	$NB_EntryBody
+</div>
+
+<div class="posted" id="$NB_EntryID">
+	<br />$template_postedby $NB_EntryAuthor
+$([ "$SHOW_PERMALINKS" = "1" ] && echo '| <a class="link" href="'${ARCHIVES_PATH}$NB_EntryPermalink'">'$template_permlink'</a>')
+$([ ! -z "$NB_EntryCategories" ] && echo "| $template_catlinks $NB_EntryCategories")
+        | Comments: <a id="comments_$NB_EntryID" href="${BASE_URL}$BLOG_URL_ACTION$ARCHIVES_DIR/$permalink_file#comment_list"></a>
+</div>
+
+<div class="comments">
+    <h3>Comments</h3>
+    <br />
+    <div id="comment_list">
+    </div>
+    <br />
+
+    <h3>Add a comment</h3>
+    <br />
+    <form action="${BASE_URL}cgi-bin/comment.cgi?id=$NB_EntryID&amp;action=put" method="post" name="newcomment">
+        <table>
+            <tr>
+                <td class="label"><label for="cmtname">Name: </label></td>
+                <td><input id="cmtname" type="text" name="name" size="40" maxlength="100" required="required" /></td>
+            </tr>
+            <tr>
+                <td class="label"><label for="cmttitle">Title: </label></td>
+                <td><input id="cmttitle" type="text" name="title" size="40" maxlength="100" required="required" /></td>
+            </tr>
+            <tr>
+                <td class="label"><label for="cmt">Comment: </label></td>
+                <td><textarea id="cmt" name="comment" rows="10" cols="40" required="required" maxlength="500"></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="submit" value="Add Comment" /></td>
+            </tr>
+        </table>
+        <input type="hidden" name="page" value="${ARCHIVES_PATH}$NB_EntryPermalink" />
+    </form>
+</div>
