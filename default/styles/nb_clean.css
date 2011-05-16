@@ -419,3 +419,18 @@ pre {
 	font-size: x-small;
 	padding:2px 15px 2px 15px;
 }
+
+.comments-author {
+    font-style: italic;
+    padding-left: 15px;
+    font-weight: normal;
+}
+
+.comments input,
+.comments textarea {
+    color: #000;
+}
+
+.label {
+    text-align: right;
+}
