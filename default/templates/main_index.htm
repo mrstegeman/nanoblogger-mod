@@ -14,34 +14,10 @@
 $NB_AtomAltLink
 $NB_RSS2AltLink
 $NB_RSSAltLink
-<script type="text/javascript">
-    var ajax_req;
-    var elements;
-    function get_comment_count() {
-        var id_str = "";
-        elements = document.getElementsByClassName('posted');
-        for (var i = 0; i < elements.length; i++) {
-            id_str += elements[i].id + ',';
-            ajax_req = new XMLHttpRequest();
-            ajax_req.onreadystatechange = function() {
-                if (ajax_req.readyState == 4 && ajax_req.status == 200) {
-                    var data = eval('(' + ajax_req.responseText + ')');
-                    var com;
-                    for (com in data) {
-                        document.getElementById('comments_' + com).innerHTML = data[com];
-                    }
-                }
-            };
-        }
-        if (id_str != '') {
-            ajax_req.open("GET", "${BASE_URL}cgi-bin/comment.cgi?id=" + id_str + "&action=count", true);
-            ajax_req.send();
-        }
-    }
-</script>
+<script type="text/javascript" src="${BASE_URL}scripts/comments.js"></script>
 </head>
 
-<body onload="get_comment_count();">
+<body onload="get_comment_count('${BASE_URL}');">
 
 <div id="banner">
 	<h1><a href="${BASE_URL}$NB_INDEX" accesskey="1">$BLOG_TITLE</a></h1>
