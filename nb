@@ -564,8 +564,8 @@ case "$delweblog_type" in
 					set_entrynavlinks next "$after_entry"
 					delete_db "$Delete_EntryFile" "$NB_DATA_DIR/master.db"
 					rm -f "$NB_DATA_DIR/$Delete_EntryFile"
-                    Delete_CommentsDir=`echo "$Delete_EntryFile" | sed -e 's/\.txt$//'`
-                    rm -fr "$NB_COMMENTS_DIR/$Delete_CommentsDir"
+					Delete_CommentsDir=`echo "$Delete_EntryFile" | sed -e 's/\.txt$//'`
+					rm -fr "$NB_COMMENTS_DIR/$Delete_CommentsDir"
 					echo "$Delete_EntryFile" >> "$SCRATCH_FILE.x-entries"
 					# hide prev and next entries from category updates
 					[ ! -z "$prev_entry" ] &&
