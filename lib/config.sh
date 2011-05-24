@@ -44,6 +44,8 @@ export BLOG_DIR
 [ -f "$BLOG_CONF" ] && . "$BLOG_CONF"
 # set data directory
 [ -d "$BLOG_DIR" ] && NB_DATA_DIR="$BLOG_DIR/data"
+# set comments directory
+[ -d "$BLOG_DIR" ] && NB_COMMENTS_DIR="$BLOG_DIR/comments"
 # allow user specified weblog data directories
 [ ! -z "$USR_DATADIR" ] && NB_DATA_DIR="$USR_DATADIR"
 # set template directory
@@ -215,7 +217,7 @@ fi
 
 # deconfigure, clear some auto-default variables
 deconfig(){ ARCHIVES_DIR=; CACHE_DIR=; NB_DATA_DIR=; NB_TEMPLATES_DIR=; NB_TEMP_DIR=; \
-	USR_PLUGINSDIR=; PARTS_DIR=; PLUGINS_DIR=; \
+	USR_PLUGINSDIR=; PARTS_DIR=; PLUGINS_DIR=; NB_COMMENTS_DIR=;\
 	NB_DATATYPE=; NB_DBTYPE=; NB_FILETYPE=; NB_INDEXFILE=; NB_SYND_FILETYPE=; NB_PROMPT=; \
 	NB_UMASK=; \
  	BLOG_AUTHOR=; BLOG_CACHEMNG=; BLOG_INTERACTIVE=; BLOG_TZD=; \

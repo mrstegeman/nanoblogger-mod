@@ -564,6 +564,8 @@ case "$delweblog_type" in
 					set_entrynavlinks next "$after_entry"
 					delete_db "$Delete_EntryFile" "$NB_DATA_DIR/master.db"
 					rm -f "$NB_DATA_DIR/$Delete_EntryFile"
+                    Delete_CommentsDir=`echo "$Delete_EntryFile" | sed -e 's/\.txt$//'`
+                    rm -fr "$NB_COMMENTS_DIR/$Delete_CommentsDir"
 					echo "$Delete_EntryFile" >> "$SCRATCH_FILE.x-entries"
 					# hide prev and next entries from category updates
 					[ ! -z "$prev_entry" ] &&
@@ -887,7 +889,7 @@ case "$addweblog_type" in
 				read -p "$NB_PROMPT" choice
 			fi
 			if [ -n "$HTTP_USER" -a -n "$HTTP_GROUP" ]; then
-				chown -R ${HTTP_USER}:${HTTP_GROUP} "$BLOG_DIR/comments"
+				chown -R ${HTTP_USER}:${HTTP_GROUP} "$NB_COMMENTS_DIR"
 			fi
 			case $choice in
 			[Yy]|"")
