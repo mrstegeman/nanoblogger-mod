@@ -1,3 +1,15 @@
+function sanitize(data, isbody) {
+    var clean = unescape(data).
+                replace(/\+/g, ' ').
+                replace(/</g, '&lt;').
+                replace(/>/g, '&gt;');
+
+    if (isbody)
+        clean = clean.replace(/\n/g, '<br />');
+
+    return clean;
+}
+
 var ajax_req;
 var elements;
 function get_comment_count(base_url) {
@@ -39,10 +51,10 @@ function get_comment_list(base_url) {
                     document.getElementById('comment_list').innerHTML +=
                         '<div class="comments-post">' +
                         '<div class="comments-head">' +
-                        '<span class="comments-title">' + unescape(data.comments[com].title.replace(/\+/g, " ")) + '</span>' +
-                        '<span class="comments-author">By: ' + unescape(data.comments[com].author.replace(/\+/g, " ")) +
-                        ' on ' + unescape(data.comments[com].date.replace(/\+/g, " ")) + '</span></div>' +
-                        '<div class="comments-body">' + unescape(data.comments[com].body.replace(/\+/g, " ").replace(/\%0D\%0A/g, "<br />")) + '</div>' +
+                        '<span class="comments-title">' + sanitize(data.comments[com].title, false) + '</span>' +
+                        '<span class="comments-author">By: ' + sanitize(data.comments[com].author, false) +
+                        ' on ' + sanitize(data.comments[com].date, false) + '</span></div>' +
+                        '<div class="comments-body">' + sanitize(data.comments[com].body, true) + '</div>' +
                         '</div>';
                 }
             }
