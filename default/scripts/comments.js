@@ -1,6 +1,5 @@
 function sanitize(data, isbody) {
-    var clean = unescape(data).
-                replace(/\+/g, ' ').
+    var clean = unescape(data.replace(/\+/g, ' ')).
                 replace(/</g, '&lt;').
                 replace(/>/g, '&gt;');
 
