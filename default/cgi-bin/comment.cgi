@@ -16,8 +16,10 @@ case "$ACTION" in
         for id in "${idlist[@]}"
         do
             ID=`echo "$id" | sed -e 's/^e//' -e 's/\.txt$//'`
-            count=`ls -1 "$BLOG_DIR/comments/$ID" | wc -l`
-            echo "\"e$ID.txt\": $count,"
+            if [ -d "$BLOG_DIR/comments/$ID" ]; then
+                count=`ls -1 "$BLOG_DIR/comments/$ID" | wc -l`
+                echo "\"e$ID.txt\": $count,"
+            fi
         done
         echo "}"
         ;;
@@ -56,8 +58,14 @@ case "$ACTION" in
                 exit 1
             fi
         fi
-        pnum=`ls -1 -r "$BLOG_DIR/comments/$ID" | head -n 1 | sed 's/\.txt$//'`
-        pnum=$(($pnum+1))
+
+        if [ -d "$BLOG_DIR/comments/$ID" ]; then
+            pnum=`ls -1 -r "$BLOG_DIR/comments/$ID" | head -n 1 | sed 's/\.txt$//'`
+            pnum=$(($pnum+1))
+        else
+            pnum=1
+        fi
+
         file="$BLOG_DIR/comments/$ID/$pnum.txt"
         if [ -n "$DATE_FORMAT" ]; then
             if [ -n "$DATE_LOCALE" ]; then
