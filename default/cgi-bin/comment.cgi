@@ -31,6 +31,14 @@ case "$ACTION" in
         for id in "${idlist[@]}"
         do
             ID=`echo "$id" | sed -e 's/^e//' -e 's/\.txt$//'`
+            if [ ! -d "$BLOG_DIR/comments/$ID" ]; then
+                mkdir "$BLOG_DIR/comments/$ID"
+                if [ $? -ne 0 ]; then
+                    echo "Status: 500 Internal Server Error"
+                    echo
+                    exit 1
+                fi
+            fi
             for file in `find $BLOG_DIR/comments/$ID/ -name '*.txt' | sort`
             do
                 date=`grep -E 'DATE::' "$file" | sed 's/^DATE:://' | head -n1`
